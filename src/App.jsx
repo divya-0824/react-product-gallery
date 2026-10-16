@@ -127,15 +127,32 @@ import './App.css';
 
 const App = () => {
   const [data, setData] = useState([]);
-
+  const [status,setStatus] = useState(0)
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        'https://dummyjson.com/products'
-      );
+    
+   
+const fetchData = async () => {
+  try {
+    const response = await fetch(
+      'https://dummyjson.com/products'
+    );
+
+    console.log(response.status);
+    setStatus(response.status);
+
+    if (response.status === 200) {
       const result = await response.json();
       setData(result.products);
-    };
+    } else {
+      setData([]);
+    }
+  } catch (error) {
+    setStatus(500);
+    setData([]);
+  }
+};
+
+    
 
     fetchData();
   }, []);
@@ -145,6 +162,15 @@ const App = () => {
   return (
     <div>
       <h2>Products</h2>
+      
+{status === 200 ? (
+  <p className="success">Status 200: Products fetched successfully!</p>
+) : status !== 0 ? (
+  <p className="error">Error: Unable to fetch products.</p>
+) : (
+  <p>Loading products...</p>
+)}
+
 
       <div className="products">
         {data.map((product) => (

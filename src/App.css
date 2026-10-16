@@ -233,3 +233,25 @@ h2 {
   font-weight: 600;
   letter-spacing: 0.3px;
 }
+
+.success {
+  color: #15803d;
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+  padding: 12px;
+  margin: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.error {
+  color: #b91c1c;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  padding: 12px;
+  margin: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
